@@ -1,16 +1,17 @@
-#!/usr/bin/ruby
+#!/usr/bin/python3
 
-def validOperation(operation)
-  String valid = "0123456789+-/*%()."
-  operation.each_char { |c|
-    return FALSE if not valid.include? c
-  }
-  return TRUE
-end
+import sys
 
-loop do
-  input = gets
-  break if input.nil?
-  input = "0" if not validOperation input.chomp
-  print "#{eval(input)}\n"
-end
+def checkOperation(operation: str) -> bool:
+    valid = "0123456789+-*/%()."
+    for c in operation:
+        if c not in valid:
+            return False
+    return True
+
+calc = str(input())
+if checkOperation(calc) is False:
+    sys.exit(84)
+else:
+    print(eval(calc))
+    sys.exit(0)

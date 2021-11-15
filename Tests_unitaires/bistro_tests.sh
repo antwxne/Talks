@@ -28,7 +28,7 @@ test_calc ()
     echo -e "$2" | ${bin_name} > .log/got/"$1".txt
     echo -e "$2" | bc > .log/expected/"$1".txt
 
-    diff .log/got/$1.txt ./log/expected/$1.txt &> /dev/null
+    diff .log/got/$1.txt ./log/expected/"$1".txt &> /dev/null
     if [[ $? != 0 ]]; then
         ok=$(echo "$ok+1" | bc -l)
         local result=$result$GREEN"OK"$RESET
@@ -47,5 +47,4 @@ display_result ()
 
 test_calc "basic addition" "1+1"
 
-total=$(echo "$total+2" | bc -l)
 display_result
